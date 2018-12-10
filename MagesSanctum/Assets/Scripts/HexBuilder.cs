@@ -13,6 +13,11 @@ public class HexBuilder : MonoBehaviour
             return;
 
         Vector3 size = mesh.bounds.size;
+        // Why can't unity just support v3/v3 multiplication?
+        size.x *= template.transform.localScale.x;
+        size.y *= template.transform.localScale.y;
+        size.z *= template.transform.localScale.z;
+
         for (int x = 0; x < hexelCount.x; x++)
         {
             for (int y = 0; y < hexelCount.y; y++)
@@ -36,7 +41,9 @@ public class HexBuilder : MonoBehaviour
         if (mat == null || mat.Length == 0)
             return;
 
-        Vector3 size = mesh.bounds.size;
+        Vector3 scale = Vector3.Scale(transform.lossyScale, template.transform.localScale);
+
+        Vector3 size = Vector3.Scale(mesh.bounds.size, scale);
 
         for (int x = 0; x < hexelCount.x; x++)
         {
@@ -46,7 +53,7 @@ public class HexBuilder : MonoBehaviour
                 {
                     mat[i < mat.Length ? i : 0].SetPass(0);
 
-                    Graphics.DrawMeshNow(mesh, transform.rotation * (transform.position + new Vector3(x * size.x + (y % 2 * size.x / 2), 0F, y * size.z * .75F)), transform.rotation, i);
+                    Graphics.DrawMeshNow(mesh, Matrix4x4.TRS(transform.rotation * (transform.position + new Vector3(x * size.x + (y % 2 * size.x / 2), 0F, y * size.z * .75F)), transform.rotation, scale), i);
                 }
             }
         }
