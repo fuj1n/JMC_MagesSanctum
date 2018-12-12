@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 1067112903}
   - component: {fileID: 1067112902}
   m_Layer: 5
-  m_Name: Image
+  m_Name: AimDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   template: {fileID: 1180750118533690, guid: 8360e5d34cd53ef4d99b40212bf80979, type: 2}
-  hexelCount: {x: 16, y: 17}
+  hexelCount: {x: 16, y: 18}
 --- !u!4 &1858640416
 Transform:
   m_ObjectHideFlags: 0
