@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using Rewired;
+using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public float speed = 10F;
 
     private Rigidbody rb;
 
+    private Player player;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        player = ReInput.players.GetPlayer(0);
     }
 
     private void Update()
@@ -25,21 +30,20 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        Vector2 movement = player.GetAxis2D("Move X", "Move Z");
 
         transform.eulerAngles = Vector3.up * Camera.main.transform.eulerAngles.y;
 
-        rb.velocity = transform.rotation * new Vector3(horizontal, 0F, vertical).normalized * speed + Vector3.up * rb.velocity.y;
+        rb.velocity = transform.rotation * new Vector3(movement.x, 0F, movement.y).normalized * speed + Vector3.up * rb.velocity.y;
     }
 
     private bool BuildUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Open build menu and freeze player
-            return true;
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    // Open build menu and freeze player
+        //    return true;
+        //}
 
         return false;
     }
