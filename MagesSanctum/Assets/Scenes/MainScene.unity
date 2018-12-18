@@ -250,7 +250,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -880,6 +880,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1690357880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100012, guid: 5483f34d925d738428db35983d91a6f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 278494234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1690357881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690357880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13aa7e7aeb119cb47b96863181d198d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 0.5
+  amplitude: 1.5
+  offset: 1
+  min: {r: 0, g: 0, b: 0, a: 0}
+  max: {r: 0, g: 0.2804877, b: 0.5882353, a: 0}
+  render: {fileID: 1946381919}
 --- !u!1 &1753850775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,3 +1117,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1946381919 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 5483f34d925d738428db35983d91a6f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 278494234}
+  m_PrefabAsset: {fileID: 0}
