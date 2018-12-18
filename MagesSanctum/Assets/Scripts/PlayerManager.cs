@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public Transform effectAnchor;
+
     public float speed = 10F;
 
     private Rigidbody rb;
