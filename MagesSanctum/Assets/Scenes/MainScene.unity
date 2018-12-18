@@ -491,6 +491,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 534669904}
+--- !u!4 &548763930 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400140, guid: 5483f34d925d738428db35983d91a6f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 342930329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &689991131
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +560,12 @@ MonoBehaviour:
   min: {r: 0, g: 0, b: 0, a: 0}
   max: {r: 0, g: 0.3, b: 0.6, a: 0}
   render: {fileID: 1888754970}
+--- !u!95 &724441203 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 5483f34d925d738428db35983d91a6f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 342930329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067112900
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +703,12 @@ MonoBehaviour:
     m_MinValue: -90
     m_MaxValue: 90
     m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
   m_VerticalRecentering:
     m_enabled: 0
     m_WaitTime: 1
@@ -708,6 +726,12 @@ MonoBehaviour:
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
   m_HorizontalRecentering:
     m_enabled: 0
     m_WaitTime: 1
@@ -731,9 +755,11 @@ MonoBehaviour:
   m_XDamping: 0.06
   m_YDamping: 0
   m_ZDamping: 0
+  m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
+  m_AngularDamping: 0
 --- !u!114 &1394564988
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -758,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 0}
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_AmplitudeGain: 1
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
@@ -891,8 +917,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8abb73b5f2c5645b041bb9812bc3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectAnchor: {fileID: 0}
   speed: 10
+  effectAnchor: {fileID: 548763930}
+  animator: {fileID: 724441203}
+  buildModeEffect: {fileID: 153179938166614449, guid: 4f4594733b84200499290ec2ea97f89a,
+    type: 3}
 --- !u!54 &1560540175
 Rigidbody:
   m_ObjectHideFlags: 0

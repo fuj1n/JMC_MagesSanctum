@@ -3,14 +3,30 @@
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     public bool requireCursor = false;
 
-    public GamePhase Phase { get; private set; }
+    public GamePhase Phase
+    {
+        get
+        {
+            return phase;
+        }
+        set
+        {
+            phase = value;
+            EventBus.Post(new EventGamePhaseChanged(value));
+        }
+    }
+    private GamePhase phase;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        Phase = GamePhase.BUILD;
     }
 
     private void Update()
