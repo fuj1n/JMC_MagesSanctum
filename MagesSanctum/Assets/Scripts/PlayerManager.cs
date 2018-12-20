@@ -14,6 +14,13 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Templates")]
     public GameObject buildModeEffect;
+    public GameObject destroyModeEffect;
+
+    [Header("Current Stats")]
+    public int coins;
+
+    [HideInInspector]
+    public bool destroyTool;
 
     private Rigidbody rb;
     private Player player;
@@ -65,18 +72,47 @@ public class PlayerManager : MonoBehaviour
         }
 
         if (buildScreenUp)
+            return true;
+
+        if (player.GetButtonDown("Next Weapon/Tool") || player.GetButtonDown("Previous Weapon/Tool"))
         {
-            // Build screen logic
+            destroyTool = !destroyTool;
+            UpdateEffect();
+            UpdateAnimator();
         }
-        else
+
+
+        if (player.GetButtonDown("Build"))
         {
-            if (player.GetButtonDown("Build"))
+            if (destroyTool)
             {
-                // TODO build tower at eye laser
+                HexTile tile = EyeLaser.Instance.SelectedTile;
+
+                if (tile)
+                    coins += Mathf.RoundToInt(tile.DestroyTower() * .85F);
+            }
+            else
+            {
+                RadioSelect selection = RadioSelect.Controller.GetSelection("BuildMenu.SelectedTower");
+
+                if (selection)
+                {
+                    Debug.Assert(selection.additionalData is TowerBase, "Selection data of " + selection + "is of wrong type: " + selection.additionalData?.GetType());
+
+                    HexTile tile = EyeLaser.Instance.SelectedTile;
+
+                    if (tile)
+                    {
+                        TowerBase tower = selection.additionalData as TowerBase;
+
+                        if (coins >= tower.towerCost && tile.BuildTower(selection.additionalData as TowerBase))
+                            coins -= tower.towerCost;
+                    }
+                }
             }
         }
 
-        return buildScreenUp;
+        return false;
     }
 
     private bool CombatUpdate()
@@ -110,8 +146,10 @@ public class PlayerManager : MonoBehaviour
 
         if (phase == GamePhase.BUILD)
         {
-            if (buildModeEffect)
+            if (!destroyTool && buildModeEffect)
                 Instantiate(buildModeEffect, effectAnchor);
+            else if (destroyTool && destroyModeEffect)
+                Instantiate(destroyModeEffect, effectAnchor);
         }
         else
         {

@@ -24,9 +24,9 @@ public class EyeLaser : MonoBehaviour
 
         if (Physics.Raycast(source.ViewportPointToRay(new Vector2(0.5F, 0.5F)), out hitInfo))
         {
-            if (hitInfo.collider.CompareTag("Tile"))
+            if (hitInfo.collider.CompareTag("Tile") || hitInfo.collider.CompareTag("Tower"))
             {
-                SelectedTile = hitInfo.collider.GetComponent<HexTile>();
+                SelectedTile = hitInfo.collider.GetComponentInParent<HexTile>();
                 SelectedTile?.Ping();
             }
         }

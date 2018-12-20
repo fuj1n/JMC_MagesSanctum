@@ -24,6 +24,13 @@ public class TowerLoader : MonoBehaviour
             GameObject display = Instantiate(towerDisplayTemplate, transform);
 
             {
+                RadioSelect rad = display.GetComponent<RadioSelect>();
+
+                if (rad)
+                    rad.additionalData = t;
+            }
+
+            {
                 Image img = display.transform.Find("Image")?.GetComponent<Image>();
 
                 if (img)
@@ -60,8 +67,6 @@ public class TowerLoader : MonoBehaviour
                 if (text)
                     text.text = string.Format(text.text, t.shotSpeed.ToString("N2"));
             }
-
-
         }
     }
 }

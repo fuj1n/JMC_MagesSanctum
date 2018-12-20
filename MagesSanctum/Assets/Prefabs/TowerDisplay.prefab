@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 1510574451501955277}
   - component: {fileID: 1510574451501955315}
   - component: {fileID: 1510574451501955314}
-  - component: {fileID: 1510574451501955312}
+  - component: {fileID: 4114176726223662445}
   m_Layer: 5
   m_Name: TowerDisplay
   m_TagString: Untagged
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0.5882353}
+  m_Color: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 0.5882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &1510574451501955312
+--- !u!114 &4114176726223662445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,34 +326,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1510574451501955276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -234403039, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e285090013941641a4f8e26f391dbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0, g: 0.53780794, b: 1, a: 1}
-    m_PressedColor: {r: 0, g: 0.49324083, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1510574451501955314}
+  radioId: BuildMenu.SelectedTower
+  isSelected: 0
+  graphic: {fileID: 1510574451501955314}
+  selectedColor: {r: 0, g: 0.8329468, b: 1, a: 1}
 --- !u!1 &1510574452039208201
 GameObject:
   m_ObjectHideFlags: 0
