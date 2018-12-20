@@ -1,9 +1,12 @@
 ﻿using Rewired;
+using Rewired.Integration.Cinemachine;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public float speed = 10F;
+
+    public GameObject buildMenu;
 
     [Header("Hands")]
     public Transform effectAnchor;
@@ -14,6 +17,8 @@ public class PlayerManager : MonoBehaviour
 
     private Rigidbody rb;
     private Player player;
+
+    private bool buildScreenUp;
 
     private void Awake()
     {
@@ -26,34 +31,52 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        bool skipInput = false;
+
         switch (GameManager.Instance.Phase)
         {
             case GamePhase.BUILD:
-                if (BuildUpdate())
-                    return;
+                skipInput = BuildUpdate();
                 break;
             case GamePhase.COMBAT:
-                if (CombatUpdate())
-                    return;
+                skipInput = CombatUpdate();
                 break;
         }
 
+        RewiredCinemachineBridge.active = !skipInput;
+
+        if (skipInput)
+            return;
+
         Vector2 movement = player.GetAxis2D("Move X", "Move Z");
-
         transform.eulerAngles = Vector3.up * Camera.main.transform.eulerAngles.y;
-
         rb.velocity = transform.rotation * new Vector3(movement.x, 0F, movement.y).normalized * speed + Vector3.up * rb.velocity.y;
     }
 
     private bool BuildUpdate()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    // Open build menu and freeze player
-        //    return true;
-        //}
+        if (player.GetButtonDown("Toggle Build Menu"))
+        {
+            buildScreenUp = !buildScreenUp;
+            GameManager.Instance.requireCursor = buildScreenUp;
 
-        return false;
+            buildMenu.SetActive(buildScreenUp);
+            return true;
+        }
+
+        if (buildScreenUp)
+        {
+            // Build screen logic
+        }
+        else
+        {
+            if (player.GetButtonDown("Build"))
+            {
+                // TODO build tower at eye laser
+            }
+        }
+
+        return buildScreenUp;
     }
 
     private bool CombatUpdate()
@@ -66,6 +89,10 @@ public class PlayerManager : MonoBehaviour
     {
         UpdateAnimator(e.phase);
         UpdateEffect(e.phase);
+
+        buildScreenUp = false;
+        buildMenu.SetActive(false);
+        GameManager.Instance.requireCursor = false;
     }
 
     public void UpdateEffect()
