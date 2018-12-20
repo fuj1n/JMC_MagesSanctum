@@ -82,8 +82,7 @@ public class HexTile : MonoBehaviour
         if (this.tower || !obj)
             return false;
 
-        TowerBase tower = Instantiate(obj, transform);
-        this.tower = tower;
+        this.tower = Instantiate(obj, transform);
 
         return true;
     }
@@ -95,7 +94,15 @@ public class HexTile : MonoBehaviour
 
         int towerCost = tower.towerCost;
 
-        Destroy(tower.gameObject);
+        BuildDestroyAnimation anim = tower.GetComponent<BuildDestroyAnimation>();
+        if (anim)
+        {
+            if (!anim.DoDestroy())
+                return 0;
+        }
+        else
+            Destroy(tower.gameObject);
+
         return towerCost;
     }
 
