@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestTower
       objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: towerCost
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: m_LocalPosition.x

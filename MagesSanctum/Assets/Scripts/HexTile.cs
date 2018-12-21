@@ -11,6 +11,7 @@ public class HexTile : MonoBehaviour
     private TowerBase tower;
 
     private PlayerManager player;
+    private bool playerInside;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class HexTile : MonoBehaviour
     {
         tick++;
 
-        if (tick - tickPinged > 2)
+        if (tick - tickPinged > 2 || playerInside)
             return;
 
         if (GameManager.Instance?.Phase != GamePhase.BUILD)
@@ -79,10 +80,10 @@ public class HexTile : MonoBehaviour
 
     public bool BuildTower(TowerBase obj)
     {
-        if (this.tower || !obj)
+        if (tower || !obj || playerInside)
             return false;
 
-        this.tower = Instantiate(obj, transform);
+        tower = Instantiate(obj, transform);
 
         return true;
     }
@@ -109,5 +110,17 @@ public class HexTile : MonoBehaviour
     public bool BlocksNavigation()
     {
         return tower?.blocksNavigation ?? false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            playerInside = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            playerInside = false;
     }
 }
