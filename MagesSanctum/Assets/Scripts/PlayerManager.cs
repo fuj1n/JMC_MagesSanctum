@@ -30,10 +30,16 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
         player = ReInput.players.GetPlayer(0);
-
         EventBus.Register(this);
+
+        // Forces the build menu to initialize as we rely on it
+        buildMenu.SetActive(true);
+    }
+
+    private void Start()
+    {
+        buildMenu.SetActive(false);
     }
 
     private void Update()
@@ -177,6 +183,18 @@ public class PlayerManager : MonoBehaviour
         if (phase == GamePhase.COMBAT)
         {
             // TODO: set combat mode
+        }
+    }
+
+    public string GetToolName()
+    {
+        if (GameManager.Instance.Phase == GamePhase.BUILD)
+        {
+            return destroyTool ? "Destroy Tool" : "Build Tool";
+        }
+        else
+        {
+            return "Uncharted Territory";
         }
     }
 

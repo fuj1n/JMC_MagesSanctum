@@ -4,6 +4,7 @@ public class HexTile : MonoBehaviour
 {
     public Material buildOutline;
     public Material destroyOutline;
+    public Material noMoneyOutline;
 
     private long tickPinged = 0;
     private long tick = 3;
@@ -33,16 +34,22 @@ public class HexTile : MonoBehaviour
         RadioSelect select = RadioSelect.Controller.GetSelection("BuildMenu.SelectedTower");
 
         GameObject tower = null;
+        int cost = 0;
 
         if (player.destroyTool && this.tower)
             tower = this.tower.gameObject;
         else if (!player.destroyTool && select && select.additionalData is TowerBase)
+        {
             tower = (select.additionalData as TowerBase).gameObject;
+            cost = (select.additionalData as TowerBase).towerCost;
+        }
 
         if (!tower)
             return;
 
         Material mat = player.destroyTool ? destroyOutline : buildOutline;
+        if (cost > player.coins && noMoneyOutline)
+            mat = noMoneyOutline;
 
         Debug.Assert(mat, "No material specified on " + name);
 

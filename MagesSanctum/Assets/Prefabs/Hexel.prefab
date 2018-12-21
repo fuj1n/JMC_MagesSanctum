@@ -108,4 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildOutline: {fileID: 2100000, guid: d2d41cfe855f4eb40b59034448371f50, type: 2}
   destroyOutline: {fileID: 2100000, guid: 5bd942b7ca973f64790ae5435c521948, type: 2}
-  outline: {fileID: 0}
+  noMoneyOutline: {fileID: 2100000, guid: 2128d176ded85ac4c98837a84864ecd0, type: 2}

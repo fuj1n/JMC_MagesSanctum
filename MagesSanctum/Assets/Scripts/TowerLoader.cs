@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class TowerLoader : MonoBehaviour
 {
     public const string TOWERS_FOLDER = "Prefabs/Towers";
+    public const string MISSINGNO_PATH = "Sprites/missingno";
+    private static Sprite missingno;
 
-    public Sprite missingno;
     public GameObject towerDisplayTemplate;
 
     private void Awake()
@@ -30,43 +31,51 @@ public class TowerLoader : MonoBehaviour
                     rad.additionalData = t;
             }
 
-            {
-                Image img = display.transform.Find("Image")?.GetComponent<Image>();
+            UpdateTowerDisplay(t, display);
+        }
+    }
 
-                if (img)
-                    img.sprite = t.icon ? t.icon : missingno;
-            }
+    public static void UpdateTowerDisplay(TowerBase t, GameObject display)
+    {
+        if (!missingno)
+            missingno = Resources.Load<Sprite>(MISSINGNO_PATH);
 
-            {
-                TextMeshProUGUI text = display.transform.Find("Name")?.GetComponent<TextMeshProUGUI>();
+        {
+            Image img = display.transform.Find("Image")?.GetComponent<Image>();
 
-                if (text)
-                    text.text = string.IsNullOrWhiteSpace(t.friendlyName) ? t.name : t.friendlyName;
-            }
-            {
-                TextMeshProUGUI text = display.transform.Find("Cost")?.GetComponent<TextMeshProUGUI>();
+            if (img)
+                img.sprite = t.icon ? t.icon : missingno;
+        }
 
-                if (text)
-                    text.text = string.Format(text.text, t.towerCost);
-            }
-            {
-                TextMeshProUGUI text = display.transform.Find("FireRate")?.GetComponent<TextMeshProUGUI>();
+        {
+            TextMeshProUGUI text = display.transform.Find("Name")?.GetComponent<TextMeshProUGUI>();
 
-                if (text)
-                    text.text = string.Format(text.text, t.fireRate.ToString("N2"));
-            }
-            {
-                TextMeshProUGUI text = display.transform.Find("ShotDamage")?.GetComponent<TextMeshProUGUI>();
+            if (text)
+                text.text = string.IsNullOrWhiteSpace(t.friendlyName) ? t.name : t.friendlyName;
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("Cost")?.GetComponent<TextMeshProUGUI>();
 
-                if (text)
-                    text.text = string.Format(text.text, t.shotDamage);
-            }
-            {
-                TextMeshProUGUI text = display.transform.Find("ShotSpeed")?.GetComponent<TextMeshProUGUI>();
+            if (text)
+                text.text = string.Format(text.text, t.towerCost);
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("FireRate")?.GetComponent<TextMeshProUGUI>();
 
-                if (text)
-                    text.text = string.Format(text.text, t.shotSpeed.ToString("N2"));
-            }
+            if (text)
+                text.text = string.Format(text.text, t.fireRate.ToString("N2"));
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("ShotDamage")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                text.text = string.Format(text.text, t.shotDamage);
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("ShotSpeed")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                text.text = string.Format(text.text, t.shotSpeed.ToString("N2"));
         }
     }
 }
