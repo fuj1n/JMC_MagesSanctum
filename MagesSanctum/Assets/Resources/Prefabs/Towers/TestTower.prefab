@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1496142517889828811, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: m_Name
-      value: BaseTower
+      value: TestTower
       objectReference: {fileID: 0}
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.074547
       objectReference: {fileID: 0}
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}

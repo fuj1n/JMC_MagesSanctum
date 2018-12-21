@@ -5,12 +5,17 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: towerBase
+    100004: g_towerBase_towerBase
     400000: //RootNode
     400002: towerBase
+    400004: g_towerBase_towerBase
     2100000: towerBaseMat
     2300000: towerBase
+    2300002: g_towerBase_towerBase
     3300000: towerBase
+    3300002: g_towerBase_towerBase
     4300000: towerBase
+    4300002: g_towerBase_towerBase
   externalObjects: {}
   materials:
     importMaterials: 0

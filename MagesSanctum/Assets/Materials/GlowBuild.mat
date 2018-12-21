@@ -81,7 +81,7 @@ Material:
     - _Parallax: 0.02
     - _RimPower: 10
     - _ScanSpeed: 0.25
-    - _ScanTiling: 100
+    - _ScanTiling: 50
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
