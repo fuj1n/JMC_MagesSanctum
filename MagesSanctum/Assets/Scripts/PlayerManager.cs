@@ -68,6 +68,12 @@ public class PlayerManager : MonoBehaviour
 
     private bool BuildUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GameManager.Instance.EnterCombatPhase();
+            return false;
+        }
+
         if (player.GetButtonDown("Toggle Build Menu"))
         {
             buildScreenUp = !buildScreenUp;
@@ -135,6 +141,12 @@ public class PlayerManager : MonoBehaviour
         buildScreenUp = false;
         buildMenu.SetActive(false);
         GameManager.Instance.requireCursor = false;
+    }
+
+    [SubscribeEvent]
+    public void OnEnemyDied(EventEnemy.Died e)
+    {
+        coins += e.coinReward;
     }
 
     public void UpdateEffect()

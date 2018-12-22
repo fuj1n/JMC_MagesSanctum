@@ -8,9 +8,15 @@ public class EnemySpawner : MonoBehaviour
     public Transform endTarget;
 
     public Vector3 enemySpawnOffset;
-    public Vector3 lineRenderOffset;
 
     public int startY;
+
+    public bool isActive;
+
+    [Header("Line Renderer")]
+    public Gradient activeColor;
+    public Gradient inactiveColor;
+    public Vector3 lineRenderOffset;
 
     private List<Vector2Int> path;
 
@@ -22,8 +28,17 @@ public class EnemySpawner : MonoBehaviour
         lineRender = GetComponent<LineRenderer>();
     }
 
+    private void Update()
+    {
+        if (lineRender)
+            lineRender.colorGradient = isActive ? activeColor : inactiveColor;
+    }
+
     private void UpdateLineRender()
     {
+        if (!lineRender)
+            return;
+
         Vector3[] points = GetPath();
 
         lineRender.positionCount = points.Length + 1;
@@ -37,8 +52,11 @@ public class EnemySpawner : MonoBehaviour
     }
 
     [SubscribeEvent]
-    public void EnemyClock(EventEnemySpawnClock e)
+    public void EnemyClock(EventEnemy.SpawnClock e)
     {
+        if (!isActive)
+            return;
+
         if (!e.template)
             return;
 
@@ -78,6 +96,12 @@ public class EnemySpawner : MonoBehaviour
             pos.y = transform.position.y + enemySpawnOffset.y;
             return pos;
         }).ToArray();
+    }
+
+    private void OnValidate()
+    {
+        if (lineRender)
+            lineRender.colorGradient = activeColor;
     }
 
     #region Enemy AI

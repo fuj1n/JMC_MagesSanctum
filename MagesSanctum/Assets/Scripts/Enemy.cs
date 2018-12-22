@@ -1,12 +1,18 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Speed")]
     [Tooltip("Enemy speed in m/s")]
     public float speed = 2F;
     public float finalSpeedMult = 2F;
     public float rotateTime = .5F;
+
+    [Header("Stats")]
+    public float damage;
+    public float maxHealth;
+    public int coinReward;
 
     [HideInInspector]
     public Vector3[] path;
@@ -17,6 +23,13 @@ public class Enemy : MonoBehaviour
 
     private bool navDone = false;
 
+    private float health = 1F;
+
+    private void Awake()
+    {
+        EventBus.Post(new EventEnemy.Spawned());
+    }
+
     private void Start()
     {
         if (path == null || path.Length == 0)
@@ -25,7 +38,19 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        Scale();
         Next();
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage / maxHealth;
+
+        if (health <= 0F)
+        {
+            health = 0F;
+            Die();
+        }
     }
 
     private void Next()
@@ -58,6 +83,18 @@ public class Enemy : MonoBehaviour
 
     private void NavDone()
     {
+        EventBus.Post(new EventEnemy.Passed(damage));
         Destroy(gameObject);
+    }
+
+    private void Die()
+    {
+        EventBus.Post(new EventEnemy.Died(coinReward));
+        Destroy(gameObject);
+    }
+
+    public void Scale()
+    {
+        //TODO enemies get tougher the longer you play
     }
 }
