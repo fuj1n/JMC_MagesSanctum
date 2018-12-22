@@ -326,6 +326,7 @@ MonoBehaviour:
   timeBetweenEnemies: 1.5
   enemyCountIncreasePercent: 0.5
   timeBetweenEnemiesDecreaseRate: 0.2
+  maxCoreHealth: 500
   coreHealth: 100
 --- !u!4 &94184153
 Transform:
@@ -1024,6 +1025,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f408fc1156ec68e46befc360baede4b9, type: 2}
+    - target: {fileID: 13700000, guid: 5483f34d925d738428db35983d91a6f3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5483f34d925d738428db35983d91a6f3, type: 3}
 --- !u!1 &388018769

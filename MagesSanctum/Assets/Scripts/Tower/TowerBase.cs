@@ -9,6 +9,8 @@ public class TowerBase : MonoBehaviour
     public float shotSpeed;
     public bool blocksNavigation;
 
+    public bool canFire = true;
+
     public Transform fireAnchor;
     public GameObject bulletTemplate;
 
@@ -20,12 +22,18 @@ public class TowerBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.Assert(fireAnchor, "Fire anchor not provided for tower: " + name);
-        Debug.Assert(bulletTemplate, "Bullet template not provided for tower: " + name);
+        if (canFire)
+        {
+            Debug.Assert(fireAnchor, "Fire anchor not provided for tower: " + name);
+            Debug.Assert(bulletTemplate, "Bullet template not provided for tower: " + name);
+        }
     }
 
     protected virtual void Update()
     {
+        if (!canFire)
+            return;
+
         timer += Time.deltaTime;
 
         if (timer > fireRate / 60F)
@@ -40,5 +48,7 @@ public class TowerBase : MonoBehaviour
     {
         if (!fireAnchor || !bulletTemplate)
             return;
+
+
     }
 }

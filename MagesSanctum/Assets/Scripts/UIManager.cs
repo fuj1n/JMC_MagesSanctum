@@ -12,11 +12,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI coinText;
 
     private string coinTextFormat;
+    private string[] towerDisplayFormats;
 
     private void Awake()
     {
         if (coinText)
             coinTextFormat = coinText.text;
+        towerDisplayFormats = TowerLoader.GetFormats(currentTowerDisplay);
     }
 
     private void Update()
@@ -52,6 +54,6 @@ public class UIManager : MonoBehaviour
         if (!currentTowerDisplay.activeInHierarchy)
             currentTowerDisplay.SetActive(true);
 
-        TowerLoader.UpdateTowerDisplay((TowerBase)select.additionalData, currentTowerDisplay);
+        TowerLoader.UpdateTowerDisplay((TowerBase)select.additionalData, currentTowerDisplay, towerDisplayFormats);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ public class TowerLoader : MonoBehaviour
         if (!towerDisplayTemplate)
             return;
 
-        TowerBase[] towers = Resources.LoadAll<GameObject>(TOWERS_FOLDER).Select(obj => obj.GetComponent<TowerBase>()).Where(b => b).ToArray();
+        TowerBase[] towers = Resources.LoadAll<TowerBase>(TOWERS_FOLDER).OrderBy(x => x.towerCost).ToArray();
 
 
         foreach (TowerBase t in towers)
@@ -35,10 +36,47 @@ public class TowerLoader : MonoBehaviour
         }
     }
 
-    public static void UpdateTowerDisplay(TowerBase t, GameObject display)
+    public static string[] GetFormats(GameObject display)
     {
+        List<string> formats = new List<string>();
+
+        {
+            TextMeshProUGUI text = display.transform.Find("Cost")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                formats.Add(text.text);
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("FireRate")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                formats.Add(text.text);
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("ShotDamage")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                formats.Add(text.text);
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("ShotSpeed")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                formats.Add(text.text);
+        }
+
+        return formats.ToArray();
+    }
+
+    public static void UpdateTowerDisplay(TowerBase t, GameObject display, string[] formats = null)
+    {
+        if (formats == null)
+            formats = GetFormats(display);
+
         if (!missingno)
             missingno = Resources.Load<Sprite>(MISSINGNO_PATH);
+
+        int fmt = 0;
 
         {
             Image img = display.transform.Find("Image")?.GetComponent<Image>();
@@ -57,25 +95,25 @@ public class TowerLoader : MonoBehaviour
             TextMeshProUGUI text = display.transform.Find("Cost")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
-                text.text = string.Format(text.text, t.towerCost);
+                text.text = string.Format(formats[fmt++], t.towerCost);
         }
         {
             TextMeshProUGUI text = display.transform.Find("FireRate")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
-                text.text = string.Format(text.text, t.fireRate.ToString("N2"));
+                text.text = string.Format(formats[fmt++], t.fireRate.ToString("N2"));
         }
         {
             TextMeshProUGUI text = display.transform.Find("ShotDamage")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
-                text.text = string.Format(text.text, t.shotDamage);
+                text.text = string.Format(formats[fmt++], t.shotDamage);
         }
         {
             TextMeshProUGUI text = display.transform.Find("ShotSpeed")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
-                text.text = string.Format(text.text, t.shotSpeed.ToString("N2"));
+                text.text = string.Format(formats[fmt++], t.shotSpeed.ToString("N2"));
         }
     }
 }
