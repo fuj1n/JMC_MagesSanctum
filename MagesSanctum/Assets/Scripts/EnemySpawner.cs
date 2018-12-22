@@ -47,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
         {
             lineRender.positionCount++;
 
-            lineRender.SetPosition(lineRender.positionCount - 1, endTarget.position.Set(Utils.Axis.Y, transform.position.y + enemySpawnOffset.y) + lineRenderOffset);
+            lineRender.SetPosition(lineRender.positionCount - 1, endTarget.position);
         }
     }
 
@@ -67,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (endTarget)
             {
-                en.finalTarget = endTarget.position.Set(Utils.Axis.Y, transform.position.y + enemySpawnOffset.y);
+                en.finalTarget = endTarget.position;
             }
         }
     }
