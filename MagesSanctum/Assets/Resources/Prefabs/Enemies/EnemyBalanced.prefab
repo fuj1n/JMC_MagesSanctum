@@ -12,6 +12,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBalanced
       objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: maxHealth
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7172461175773329631, guid: 04c54250b7ed19f46907e356a8e1e855,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,15 +82,5 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1660d8ed7be500640b2310d211c6ccc5, type: 2}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: maxHealth
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: damage
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c54250b7ed19f46907e356a8e1e855, type: 3}

@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     public float timeBetweenEnemiesDecreaseRate = .2F;
 
     [Header("Stats")]
-    public float coreHealth = 100;
+    public float maxCoreHealth;
+
+    [HideInInspector]
+    public float coreHealth = 1F;
 
     [System.NonSerialized]
     public bool requireCursor = false;
@@ -46,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        coreHealth = 1F;
+
         EventBus.Register(this);
 
         Instance = this;
@@ -124,7 +129,7 @@ public class GameManager : MonoBehaviour
     [SubscribeEvent]
     public void EnemyPassed(EventEnemy.Passed e)
     {
-        coreHealth -= e.damage;
+        coreHealth -= e.damage / maxCoreHealth;
 
         if (coreHealth <= 0F)
         {
