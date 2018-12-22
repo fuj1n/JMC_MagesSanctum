@@ -2,9 +2,15 @@
 
 public class HexTile : MonoBehaviour
 {
+    [HideInInspector]
+    public HexBuilder parent;
+    [HideInInspector]
+    public Vector2Int coords;
+
+    [Header("Outlines")]
     public Material buildOutline;
     public Material destroyOutline;
-    public Material noMoneyOutline;
+    public Material cantBuildOutline;
 
     private long tickPinged = 0;
     private long tick = 3;
@@ -48,8 +54,10 @@ public class HexTile : MonoBehaviour
             return;
 
         Material mat = player.destroyTool ? destroyOutline : buildOutline;
-        if (cost > player.coins && noMoneyOutline)
-            mat = noMoneyOutline;
+        if (cost > player.coins && cantBuildOutline)
+            mat = cantBuildOutline;
+        if (!player.destroyTool && EnemySpawner.CalculateAI(parent, coords.y, coords) == null)
+            mat = cantBuildOutline;
 
         Debug.Assert(mat, "No material specified on " + name);
 
@@ -87,11 +95,12 @@ public class HexTile : MonoBehaviour
 
     public bool BuildTower(TowerBase obj)
     {
-        if (tower || !obj || playerInside)
+        if (tower || !obj || playerInside || EnemySpawner.CalculateAI(parent, coords.y, coords) == null)
             return false;
 
         tower = Instantiate(obj, transform);
 
+        EventBus.Post(new EventWorldChanged(parent));
         return true;
     }
 
@@ -107,10 +116,13 @@ public class HexTile : MonoBehaviour
         {
             if (!anim.DoDestroy())
                 return 0;
+
+            tower = null;
         }
         else
             Destroy(tower.gameObject);
 
+        EventBus.Post(new EventWorldChanged(parent));
         return towerCost;
     }
 

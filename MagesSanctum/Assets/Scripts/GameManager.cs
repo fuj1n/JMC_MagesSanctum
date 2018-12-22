@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool requireCursor = false;
 
+    public Enemy enemyTemplateTest;
+
     public GamePhase Phase
     {
         get
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
             Phase = GamePhase.COMBAT; // TEMP
+        if (Input.GetKeyDown(KeyCode.P))
+            EventBus.Post(new EventEnemySpawnClock(enemyTemplateTest));
 
         Cursor.lockState = requireCursor ? CursorLockMode.None : CursorLockMode.Locked;
     }

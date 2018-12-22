@@ -7,8 +7,12 @@ public class HexBuilder : MonoBehaviour
 
     public bool drawFilledPreview = false;
 
+    public HexTile[,] world;
+
     private void Start()
     {
+        world = new HexTile[hexelCount.x, hexelCount.y];
+
         Mesh mesh = template?.GetComponent<MeshFilter>()?.sharedMesh;
 
         if (!mesh)
@@ -16,14 +20,27 @@ public class HexBuilder : MonoBehaviour
 
         Vector3 size = Vector3.Scale(mesh.bounds.size, template.transform.localScale);
 
-        for (int x = Mathf.FloorToInt(-hexelCount.x / 2F); x < Mathf.FloorToInt(hexelCount.x / 2F); x++)
+        for (int x = 0; x < hexelCount.x; x++)
         {
-            for (int y = Mathf.FloorToInt(-hexelCount.y / 2F); y < Mathf.FloorToInt(hexelCount.y / 2F); y++)
+            int cx = x - Mathf.FloorToInt(hexelCount.x / 2F);
+
+            for (int y = 0; y < hexelCount.y; y++)
             {
+                int cy = y - Mathf.FloorToInt(hexelCount.y / 2F);
+
                 GameObject go = Instantiate(template, transform);
-                go.transform.localPosition = new Vector3(x * size.x + (Mathf.Abs(y % 2) * size.x / 2), 0F, y * size.z * .75F);
+                go.transform.localPosition = new Vector3(cx * size.x + (Mathf.Abs(cy % 2) * size.x / 2), 0F, cy * size.z * .75F);
+
+                world[x, y] = go.GetComponentInChildren<HexTile>();
+                if (world[x, y])
+                {
+                    world[x, y].parent = this;
+                    world[x, y].coords = new Vector2Int(x, y);
+                }
             }
         }
+
+        EventBus.Post(new EventWorldChanged(this));
     }
 
 #if UNITY_EDITOR
