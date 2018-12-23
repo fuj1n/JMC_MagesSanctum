@@ -217,10 +217,13 @@ MonoBehaviour:
   fireRate: 0
   shotDamage: 0
   shotSpeed: 0
+  range: 0
   blocksNavigation: 1
   canFire: 1
   fireAnchor: {fileID: 8823949870265148019}
-  bulletTemplate: {fileID: 0}
+  gunPivot: {fileID: 1997823807252252693}
+  bulletTemplate: {fileID: 4305383450355580064, guid: 0d593919a7364f646986a8197c07a931,
+    type: 3}
   icon: {fileID: 0}
   friendlyName: Untitled Tower
 --- !u!114 &3066130525841616617

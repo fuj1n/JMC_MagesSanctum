@@ -10,12 +10,7 @@ PrefabInstance:
     - target: {fileID: 1496142517889828811, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: m_Name
-      value: TestTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
-        type: 3}
-      propertyPath: towerCost
-      value: 20
+      value: Basic Tower
       objectReference: {fileID: 0}
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
@@ -71,6 +66,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: towerCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: fireRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: shotDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: shotSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: friendlyName
+      value: Basic Tower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441db2733a928644f9d0529767f4eca6, type: 3}

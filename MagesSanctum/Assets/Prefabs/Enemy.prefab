@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2731661487763491359}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,4 +107,7 @@ MonoBehaviour:
   speed: 2
   finalSpeedMult: 2
   rotateTime: 0.5
+  damage: 0
+  maxHealth: 0
+  coinReward: 0
   path: []

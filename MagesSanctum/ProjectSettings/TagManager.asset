@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Tile
   - Tower
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -64,6 +64,12 @@ public class TowerLoader : MonoBehaviour
             if (text)
                 formats.Add(text.text);
         }
+        {
+            TextMeshProUGUI text = display.transform.Find("Range")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+                formats.Add(text.text);
+        }
 
         return formats.ToArray();
     }
@@ -101,19 +107,37 @@ public class TowerLoader : MonoBehaviour
             TextMeshProUGUI text = display.transform.Find("FireRate")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
+            {
+                text.gameObject.SetActive(t.canFire);
                 text.text = string.Format(formats[fmt++], t.fireRate.ToString("N2"));
+            }
         }
         {
             TextMeshProUGUI text = display.transform.Find("ShotDamage")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
+            {
+                text.gameObject.SetActive(t.canFire);
                 text.text = string.Format(formats[fmt++], t.shotDamage);
+            }
         }
         {
             TextMeshProUGUI text = display.transform.Find("ShotSpeed")?.GetComponent<TextMeshProUGUI>();
 
             if (text)
+            {
+                text.gameObject.SetActive(t.canFire);
                 text.text = string.Format(formats[fmt++], t.shotSpeed.ToString("N2"));
+            }
+        }
+        {
+            TextMeshProUGUI text = display.transform.Find("Range")?.GetComponent<TextMeshProUGUI>();
+
+            if (text)
+            {
+                text.gameObject.SetActive(t.canFire);
+                text.text = string.Format(formats[fmt++], t.range.ToString("N2"));
+            }
         }
     }
 }
