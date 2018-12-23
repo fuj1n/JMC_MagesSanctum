@@ -12,26 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHeavy
       objectReference: {fileID: 0}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: speed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: finalSpeedMult
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: maxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
-        type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 7172461175773329631, guid: 04c54250b7ed19f46907e356a8e1e855,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -92,5 +72,35 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f9e6360df6d31fe4ab2d999daad15d0f, type: 2}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: speed
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: finalSpeedMult
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: friendlyName
+      value: Heavy Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731661487763491359, guid: 04c54250b7ed19f46907e356a8e1e855,
+        type: 3}
+      propertyPath: coinReward
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04c54250b7ed19f46907e356a8e1e855, type: 3}

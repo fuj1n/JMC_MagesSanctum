@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public string friendlyName;
+
     [Header("Speed")]
     [Tooltip("Enemy speed in m/s")]
     public float speed = 2F;
@@ -41,6 +43,8 @@ public class Enemy : MonoBehaviour
         Scale();
         Next();
     }
+
+    public float GetHealth() => health;
 
     public void Damage(float damage)
     {

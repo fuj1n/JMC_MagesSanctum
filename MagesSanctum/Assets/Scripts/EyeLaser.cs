@@ -5,28 +5,22 @@ public class EyeLaser : MonoBehaviour
     public static EyeLaser Instance { get; private set; }
 
     public Camera source;
-    public GameObject hoveredTowerCanvas;
-    public Vector3 hoveredTowerOffset;
+    public TowerDisplay hoveredTowerDisplay;
+    public EnemyDisplay hoveredEnemyDisplay;
+    public Vector3 hoverDisplayOffset;
 
     public HexTile SelectedTile { get; private set; }
-
-    private string[] displayFormats;
 
     private void Awake()
     {
         Instance = this;
-
-        if (hoveredTowerCanvas)
-            displayFormats = TowerLoader.GetFormats(hoveredTowerCanvas.transform.GetChild(0).gameObject);
     }
 
     private void Update()
     {
         SelectedTile = null;
 
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(source.ViewportPointToRay(new Vector2(0.5F, 0.5F)), out hitInfo) && GameManager.Instance.Phase == GamePhase.BUILD)
+        if (Physics.Raycast(source.ViewportPointToRay(new Vector2(0.5F, 0.5F)), out RaycastHit hitInfo) && GameManager.Instance.Phase == GamePhase.BUILD)
         {
             if (hitInfo.collider.CompareTag("Tile") || hitInfo.collider.CompareTag("Tower"))
             {
@@ -35,29 +29,54 @@ public class EyeLaser : MonoBehaviour
             }
         }
 
-        if (!hoveredTowerCanvas)
-            return;
-
-        if (hitInfo.collider && hitInfo.collider.CompareTag("Tower"))
+        if (hoveredTowerDisplay)
         {
-            TowerBase t = hitInfo.collider.GetComponent<TowerBase>();
-
-            if (!t && hoveredTowerCanvas.activeInHierarchy)
-                hoveredTowerCanvas.SetActive(false);
-
-            if (t)
+            if (hitInfo.collider && hitInfo.collider.CompareTag("Tower"))
             {
-                if (!hoveredTowerCanvas.activeInHierarchy)
-                    hoveredTowerCanvas.SetActive(true);
+                TowerBase t = hitInfo.collider.GetComponent<TowerBase>();
 
-                TowerLoader.UpdateTowerDisplay(t, hoveredTowerCanvas.transform.GetChild(0).gameObject, displayFormats);
-                hoveredTowerCanvas.transform.position = hitInfo.point + hoveredTowerOffset;
-                hoveredTowerCanvas.transform.forward = -hitInfo.normal;
+                if (!t && hoveredTowerDisplay.transform.parent.gameObject.activeInHierarchy)
+                    hoveredTowerDisplay.transform.parent.gameObject.SetActive(false);
+
+                if (t)
+                {
+                    if (!hoveredTowerDisplay.transform.parent.gameObject.activeInHierarchy)
+                        hoveredTowerDisplay.transform.parent.gameObject.SetActive(true);
+
+                    hoveredTowerDisplay.Load(t);
+                    hoveredTowerDisplay.transform.parent.position = hitInfo.point + hoverDisplayOffset;
+                    hoveredTowerDisplay.transform.parent.forward = -hitInfo.normal;
+                }
+            }
+            else if (hoveredTowerDisplay.transform.parent.gameObject.activeInHierarchy)
+            {
+                hoveredTowerDisplay.transform.parent.gameObject.SetActive(false);
             }
         }
-        else if (hoveredTowerCanvas.activeInHierarchy)
+
+        if (hoveredEnemyDisplay)
         {
-            hoveredTowerCanvas.SetActive(false);
+            if (hitInfo.collider && hitInfo.collider.CompareTag("Enemy"))
+            {
+                Enemy e = hitInfo.collider.GetComponent<Enemy>();
+
+                if (!e && hoveredEnemyDisplay.transform.parent.gameObject.activeInHierarchy)
+                    hoveredEnemyDisplay.transform.parent.gameObject.SetActive(false);
+
+                if (e)
+                {
+                    if (!hoveredEnemyDisplay.transform.parent.gameObject.activeInHierarchy)
+                        hoveredEnemyDisplay.transform.parent.gameObject.SetActive(true);
+
+                    hoveredEnemyDisplay.Load(e);
+                    hoveredEnemyDisplay.transform.parent.position = hitInfo.point + hoverDisplayOffset;
+                    hoveredEnemyDisplay.transform.parent.forward = -hitInfo.normal;
+                }
+            }
+            else if (hoveredEnemyDisplay.transform.parent.gameObject.activeInHierarchy)
+            {
+                hoveredEnemyDisplay.transform.parent.gameObject.SetActive(false);
+            }
         }
     }
 }

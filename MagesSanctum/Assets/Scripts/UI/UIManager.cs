@@ -3,22 +3,35 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public const string MISSINGNO_PATH = "Sprites/missingno";
+
+    public static Sprite MissingNo
+    {
+        get
+        {
+            if (!missingno)
+                missingno = Resources.Load<Sprite>(MISSINGNO_PATH);
+
+            return missingno;
+        }
+    }
+
+    private static Sprite missingno;
+
     public PlayerManager player;
 
-    public GameObject currentTowerDisplay;
+    public TowerDisplay currentTowerDisplay;
 
     [Header("Status Bar")]
     public TextMeshProUGUI toolText;
     public TextMeshProUGUI coinText;
 
     private string coinTextFormat;
-    private string[] towerDisplayFormats;
 
     private void Awake()
     {
         if (coinText)
             coinTextFormat = coinText.text;
-        towerDisplayFormats = TowerLoader.GetFormats(currentTowerDisplay);
     }
 
     private void Update()
@@ -36,8 +49,8 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.Phase != GamePhase.BUILD || player.destroyTool)
         {
-            if (currentTowerDisplay.activeInHierarchy)
-                currentTowerDisplay.SetActive(false);
+            if (currentTowerDisplay.gameObject.activeInHierarchy)
+                currentTowerDisplay.gameObject.SetActive(false);
 
             return;
         }
@@ -45,15 +58,15 @@ public class UIManager : MonoBehaviour
         RadioSelect select = RadioSelect.Controller.GetSelection("BuildMenu.SelectedTower");
         if (!select || !(select.additionalData is TowerBase))
         {
-            if (currentTowerDisplay.activeInHierarchy)
-                currentTowerDisplay.SetActive(false);
+            if (currentTowerDisplay.gameObject.activeInHierarchy)
+                currentTowerDisplay.gameObject.SetActive(false);
 
             return;
         }
 
-        if (!currentTowerDisplay.activeInHierarchy)
-            currentTowerDisplay.SetActive(true);
+        if (!currentTowerDisplay.gameObject.activeInHierarchy)
+            currentTowerDisplay.gameObject.SetActive(true);
 
-        TowerLoader.UpdateTowerDisplay((TowerBase)select.additionalData, currentTowerDisplay, towerDisplayFormats);
+        currentTowerDisplay.Load((TowerBase)select.additionalData);
     }
 }
