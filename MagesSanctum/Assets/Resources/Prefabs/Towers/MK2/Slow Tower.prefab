@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1496142517889828811, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: m_Name
-      value: Wall
+      value: Slow Tower
       objectReference: {fileID: 0}
     - target: {fileID: 6742870487095412395, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
@@ -70,43 +70,53 @@ PrefabInstance:
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: towerCost
-      value: 5
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
-      propertyPath: canFire
-      value: 0
+      propertyPath: range
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: shotDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: shotSpeed
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: friendlyName
-      value: Wall
+      value: Slow Tower MK2
       objectReference: {fileID: 0}
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 5fbf07fe82324ba4cb06f3b977e877a1,
+      objectReference: {fileID: 21300012, guid: 5fbf07fe82324ba4cb06f3b977e877a1,
         type: 3}
-    - target: {fileID: 7995277303344695511, guid: 441db2733a928644f9d0529767f4eca6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: color.r
-      value: 0.019607844
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: color.g
-      value: 0.019607844
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: color.b
-      value: 0.019607844
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441db2733a928644f9d0529767f4eca6, type: 3}

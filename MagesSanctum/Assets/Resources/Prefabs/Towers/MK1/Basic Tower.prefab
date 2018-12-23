@@ -75,17 +75,17 @@ PrefabInstance:
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
       propertyPath: range
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
-        type: 3}
-      propertyPath: fireRate
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
+      propertyPath: fireRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
       propertyPath: shotDamage
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
         type: 3}
@@ -96,6 +96,27 @@ PrefabInstance:
         type: 3}
       propertyPath: friendlyName
       value: Basic Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991332987766877115, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300002, guid: 5fbf07fe82324ba4cb06f3b977e877a1,
+        type: 3}
+    - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: color.g
+      value: 0.1901753
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771197974738224506, guid: 441db2733a928644f9d0529767f4eca6,
+        type: 3}
+      propertyPath: color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441db2733a928644f9d0529767f4eca6, type: 3}
